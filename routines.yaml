@@ -1,0 +1,107 @@
+test:
+ name: "test"
+ exercises:
+  - name: "legs falafel"
+    difficulty: "easy"
+    switch: true
+    duration: 10
+  - name: "legs barbara"
+    difficulty: "easy"
+    switch: false
+    duration: 5
+  - name: "legs bagel"
+    difficulty: "easy"
+    switch: false
+    duration: 10
+hamstring_1:
+  name: "Hamstring 1"
+  exercises:
+    - name: "Toe Touch"
+      difficulty: "easy"
+      switch: false
+      duration: 30
+    - name: "Cross Leg Fold"
+      difficulty: "easy"
+      switch: true
+      duration: 60
+    - name: "Wide Leg Bend"
+      difficulty: "easy"
+      switch: false
+      duration: 30
+    - name: "Side Lunge"
+      difficulty: "easy"
+      switch: true
+      duration: 60
+    - name: "Reverse Lunge"
+      difficulty: "easy"
+      switch: true
+      duration: 60
+    - name: "Seated Fold"
+      difficulty: "easy"
+      switch: false
+      duration: 30
+    - name: "Hurdler"
+      difficulty: "easy"
+      switch: true
+      duration: 60
+
+posture_reset:
+  name: "Posture Reset"
+  exercises:
+    - name: "Shoulder Rolls"
+      difficulty: "easy"
+      switch: true
+      duration: 30
+    - name: "Overhead Reach"
+      difficulty: "easy"
+      switch: false
+      duration: 30
+    - name: "Side Bend"
+      difficulty: "easy"
+      switch: true
+      duration: 30
+    - name: "Cactus Arms"
+      difficulty: "easy"
+      switch: false
+      duration: 30
+    - name: "Neck Flex"
+      difficulty: "easy"
+      switch: true
+      duration: 30
+    - name: "Neck Roll"
+      difficulty: "easy"
+      switch: false
+      duration: 30
+    - name: "Neck Laterals"
+      difficulty: "easy"
+      switch: true
+      duration: 30
+    - name: "Diver"
+      difficulty: "easy"
+      switch: false
+      duration: 30
+
+Quads_1:
+  name: "Quads 1"
+  exercises:
+    - name: "Standing Quad"
+      difficulty: "easy"
+      switch: true
+      duration: 60
+    - name: "Lunge"
+      difficulty: "easy"
+      switch: true
+      duration: 60
+    - name: "Kneeling Quad"
+      difficulty: "easy"
+      switch: true
+      duration: 60
+    - name: "Lizard Pose"
+      difficulty: "easy"
+      switch: true
+      duration: 60
+    - name: "Quad Stretch"
+      difficulty: "easy"
+      switch: true
+      duration: 60
+    
