@@ -3,6 +3,8 @@ import tkinter as tk
 from tkinter import ttk, PhotoImage
 import winsound
 from routine import routine
+import states
+
 # TODO Tkinter GUI
 # TODO do it without time.sleep
 
@@ -68,9 +70,11 @@ class Routinepage(tk.Frame):
         self.name = name
         self.root = root
         self.routine = app.routines[name]
-        
-        self.label = tk.Label(self, text=f'{self.name}', font=('Consolas', 24))
-        self.label.pack(pady=10)
+        self.state = states.start(self.root, self, 0)
+        self.running = False
+
+        self.routine_name = tk.Label(self, text=f'{self.name}', font=('Consolas', 24))
+        self.routine_name.pack(pady=10)
 
         self.exercise_label = tk.Label(self, text='Exercise', font=('Consolas', 16))
         self.exercise_label.pack(pady=10)
@@ -87,84 +91,35 @@ class Routinepage(tk.Frame):
         self.start_button = tk.Button(self, text='Start routine', command=lambda: self.start_routine())
         self.start_button.pack(padx=20)
 
-        self.next_button = tk.Button(self, text='Next exercise', command=lambda: self.execute_next_exercise())
-        self.next_button.pack(pady=20)
+        self.button_frame = tk.Frame(self)
+        self.button_frame.columnconfigure(0, weight=1)
+        self.button_frame.columnconfigure(1, weight=1)
 
-        self.running = False
+        self.pause_button = tk.Button(self.button_frame, text='Pause', command=lambda: self.state.pause())
+        self.pause_button.grid(row=0, column=0, sticky='ew')
 
-        self.back_button = tk.Button(self, text='Back to home', command=lambda: app.show_page('home'))
+        self.resume_button = tk.Button(self.button_frame, text='Resume', command=lambda: self.state.resume())
+        self.resume_button.grid(row=0, column=1, sticky='ew')
+
+        self.next_button = tk.Button(self.button_frame, text='Next exercise', command=lambda: self.state.next())
+        self.next_button.grid(row=0, column=2, sticky='ew')
+
+        self.button_frame.pack(pady=10, fill='x')
+
+        self.back_button = tk.Button(self, text='Back to home', command=lambda: app.show_page('home')) #! kill the current, then change
         self.back_button.pack(pady=10)
+    
+    def change_state(self, state:states.RoutineState) -> None:
+        self.state = state
+        self.run_state()
 
+    def run_state(self) -> None:
+        self.state.run()
+    
     def start_routine(self) -> None:
         if not self.running:
             self.running = True
-            self.current_index = 0
-            exercise_name = self.routine.stages[self.current_index][0]
-            self.interval_at_start(exercise_name, 3)
-
-    def interval_at_start(self, exercise_name:str, interval:int) -> None:
-        if interval == 0:
-            self.execute_exercise_at(self.current_index)
-            return
-        self.exercise_label.config(text=f'Get ready for {exercise_name}!')
-        image_path = f'./assets/img/exercise/{exercise_name}.png'
-        try:
-            exercise_image = PhotoImage(file=image_path)
-        except:
-            exercise_image = PhotoImage(file='./assets/img/exercise/Seated Fold.png')
-        self.exercise_image.config(image=exercise_image)
-        self.exercise_image.image = exercise_image
-
-        self.exercise_time.config(text=f'{interval} seconds to go')
-        self.progress['value'] = 0
-        self.root.after(1000, self.interval_at_start, exercise_name, interval - 1)
-
-
-    def execute_exercise_at(self, index) -> None:
-        exercise, duration, exercise_index = self.routine.stages[index]
-        self.exercise_label.config(text=f'{exercise}')
-        
-        self.progress['value'] = 0
-        time_passed = 0
-        self.execute_exercise(exercise, time_passed, duration, exercise_index)
-
-    def execute_exercise(self, exercise, time_passed:int, duration:int, exercise_index:int) -> None:
-        if exercise_index != self.current_index: # will not run if the exercise has been switched
-            return
-        # show image of exercise
-        self.progress['value'] = time_passed / duration * 100
-        self.exercise_time.config(text=f'{duration - time_passed} seconds remaining')
-        print(f'{exercise} for {duration} seconds: {time_passed} seconds passed')
-
-        # switch sides if necessary
-        if time_passed == duration // 2 and exercise.switch:
-            self.exercise_time.config(text='Switch sides')
-            self.root.after(5000, self.execute_exercise, exercise, time_passed + 1, duration, exercise_index)
-            return
-        elif time_passed >= duration - 3 and time_passed < duration:
-            winsound.Beep(500, 500)
-            self.root.after(500, self.execute_exercise, exercise, time_passed + 1, duration, exercise_index)
-            return
-        elif time_passed == duration:
-            self.exercise_time.config(text='')
-            self.progress['value'] = 100
-            self.root.after(1000, self.update_index)
-            return
-        else:
-            self.root.after(1000, self.execute_exercise, exercise, time_passed + 1, duration, exercise_index)
-
-    def execute_next_exercise(self) -> None:
-        if self.running:
-            self.update_index()
-
-    def update_index(self) -> None:
-        self.current_index += 1
-        if self.current_index >= len(self.routine.stages):
-            self.exercise_label.config(text='Routine complete!')
-            self.running = False
-        else:
-            exercise_name = self.routine.stages[self.current_index][0]
-            self.interval_at_start(exercise_name, 5)
+            self.state.run()
             
 
 if __name__ == '__main__':
