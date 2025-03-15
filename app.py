@@ -1,6 +1,6 @@
 from load import *
 import tkinter as tk
-from tkinter import ttk
+from tkinter import ttk, PhotoImage
 import winsound
 from routine import routine
 # TODO Tkinter GUI
@@ -12,7 +12,7 @@ class bendapp:
         self.root = root
 
         self.root.title('Bend')
-        self.root.geometry('400x600')
+        self.root.geometry('400x700')
         
         self.routines = load_all_routines()
         self.pages = {}
@@ -68,11 +68,15 @@ class Routinepage(tk.Frame):
         self.name = name
         self.root = root
         self.routine = app.routines[name]
+        
         self.label = tk.Label(self, text=f'{self.name}', font=('Consolas', 24))
-        self.label.pack(pady=20)
+        self.label.pack(pady=10)
 
         self.exercise_label = tk.Label(self, text='Exercise', font=('Consolas', 16))
-        self.exercise_label.pack(pady=40)
+        self.exercise_label.pack(pady=10)
+
+        self.exercise_image = tk.Label(self, text=f'') # make it empty to hold image next
+        self.exercise_image.pack(pady=10)
 
 
         self.progress = ttk.Progressbar(self, orient='horizontal', length=200, mode='determinate', maximum=100)
@@ -96,13 +100,21 @@ class Routinepage(tk.Frame):
             self.running = True
             self.current_index = 0
             exercise_name = self.routine.stages[self.current_index][0]
-            self.interval_at_start(exercise_name, 5)
+            self.interval_at_start(exercise_name, 3)
 
     def interval_at_start(self, exercise_name:str, interval:int) -> None:
         if interval == 0:
             self.execute_exercise_at(self.current_index)
             return
         self.exercise_label.config(text=f'Get ready for {exercise_name}!')
+        image_path = f'./assets/img/exercise/{exercise_name}.png'
+        try:
+            exercise_image = PhotoImage(file=image_path)
+        except:
+            exercise_image = PhotoImage(file='./assets/img/exercise/Seated Fold.png')
+        self.exercise_image.config(image=exercise_image)
+        self.exercise_image.image = exercise_image
+
         self.exercise_time.config(text=f'{interval} seconds to go')
         self.progress['value'] = 0
         self.root.after(1000, self.interval_at_start, exercise_name, interval - 1)
@@ -111,7 +123,7 @@ class Routinepage(tk.Frame):
     def execute_exercise_at(self, index) -> None:
         exercise, duration, exercise_index = self.routine.stages[index]
         self.exercise_label.config(text=f'{exercise}')
-
+        
         self.progress['value'] = 0
         time_passed = 0
         self.execute_exercise(exercise, time_passed, duration, exercise_index)
