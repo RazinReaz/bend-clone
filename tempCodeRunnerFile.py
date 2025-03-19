@@ -1,1 +1,1 @@
-        if not self.running:
+placeholder_image = Image.new("RGBA", (200, 200), (255, 255, 255, 0))

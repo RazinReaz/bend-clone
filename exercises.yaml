@@ -1,0 +1,142 @@
+Falafel:
+  name: "Falafel"
+  difficulty: "easy"
+  switch: true
+
+Barbara:
+  name: "Barbara"
+  difficulty: "easy"
+  switch: false
+  
+Bagel:
+  name: "Bagel"
+  difficulty: "easy"
+  switch: false
+
+Toe Touch:
+  name: "Toe Touch"
+  difficulty: "easy"
+  switch: False
+
+Cross Leg Fold:
+  name: "Cross Leg Fold"
+  difficulty: "easy"
+  switch: true
+
+Wide Leg Bend:
+  name: "Wide Leg Bend"
+  difficulty: "easy"
+  switch: False
+
+Side Lunge:
+  name: "Side Lunge"
+  difficulty: "easy"
+  switch: true
+
+Reverse Lunge:
+  name: "Reverse Lunge"
+  difficulty: "easy"
+  switch: true
+
+Seated Fold:
+  name: "Seated Fold"
+  difficulty: "easy"
+  switch: False
+
+Hurdler:
+  name: "Hurdler"
+  difficulty: "easy"
+  switch: true
+
+Shoulder Rolls:
+  name: "Shoulder Rolls"
+  difficulty: "easy"
+  switch: true
+  
+Overhead Reach:
+  name: "Overhead Reach"
+  difficulty: "easy"
+  switch: false
+  
+Side Bend:
+  name: "Side Bend"
+  difficulty: "easy"
+  switch: true
+  
+Cactus Arms:
+  name: "Cactus Arms"
+  difficulty: "easy"
+  switch: false
+  
+Neck Flex:
+  name: "Neck Flex"
+  difficulty: "easy"
+  switch: true
+  
+Neck Roll:
+  name: "Neck Roll"
+  difficulty: "easy"
+  switch: false
+  
+Neck Laterals:
+  name: "Neck Laterals"
+  difficulty: "easy"
+  switch: true
+  
+Diver:
+  name: "Diver"
+  difficulty: "easy"
+  switch: false
+Standing Quad:
+  name: "Standing Quad"
+  difficulty: "easy"
+  switch: true
+Lunge:
+  name: "Lunge"
+  difficulty: "easy"
+  switch: true
+Kneeling Quad:
+  name: "Kneeling Quad"
+  difficulty: "easy"
+  switch: true
+Lizard Pose:
+  name: "Lizard Pose"
+  difficulty: "easy"
+  switch: true
+Quad Stretch:
+  name: "Quad Stretch"
+  difficulty: "easy"
+  switch: true
+Chest Opener:
+  name: "Chest Opener"
+  difficulty: "easy"
+  switch: false
+Chin Retractions:
+  name: "Chin Retractions"
+  difficulty: "easy"
+  switch: false
+Diver:
+  name: "Diver"
+  difficulty: "easy"
+  switch: false
+Ear-to-Shoulder:
+  name: "Ear-to-SHoulder"
+  difficulty: "easy"
+  switch: true
+One Arm Hug:
+  name: "One Arm Hug"
+  difficulty: "easy"
+  switch: true
+Overhead Tricep:
+  name: "Overhead Tricep"
+  difficulty: "easy"
+  switch: true
+Reverse Shoulder:
+  name: "Reverse Shoulder"
+  difficulty: "easy"
+  switch: false
+Wall Arms:
+  name: "Wall Arms"
+  difficulty: "easy"
+  switch: true
+
